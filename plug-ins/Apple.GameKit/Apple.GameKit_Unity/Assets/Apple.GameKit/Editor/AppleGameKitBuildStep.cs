@@ -38,7 +38,7 @@ namespace Apple.GameKit.Editor
                 string libraryPath = AppleFrameworkUtility.GetPluginLibraryPathForBuildTarget(libraryName, buildTarget);
                 if (String.IsNullOrEmpty(libraryPath))
                 {
-                    Debug.Log($"Failed to locate path for library: {libraryName}");
+                    Debug.LogError($"Failed to locate path for library: {libraryName}");
                 }
                 else
                 {

@@ -16,6 +16,10 @@ namespace Apple.Core
         /// <return>String representing the path within the project to the library. String.Empty if not found or unsupported platform.</return>
         public static string GetPluginLibraryPathForBuildTarget(string libraryName, BuildTarget buildTarget)
         {
+            // remove extension for search
+            libraryName = RemoveSuffixIfPresent(libraryName, ".framework");
+            libraryName = RemoveSuffixIfPresent(libraryName, ".bundle");
+
             string platformString;
             switch (buildTarget)
             {
@@ -53,6 +57,14 @@ namespace Apple.Core
             }
 
             return string.Empty;
+        }
+
+        private static string RemoveSuffixIfPresent(string str, string suffix)
+        {
+            if (str.EndsWith(suffix))
+                return str.Substring(0, str.Length - suffix.Length);
+
+            return str;
         }
 
         /// <summary>
